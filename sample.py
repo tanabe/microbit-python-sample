@@ -3,10 +3,19 @@
 # push-up counter sample
 
 from microbit import *
+
 count = 0
 is_down = False
 is_complete = False
+total = 5
+wait_time = 1500
+
 while True:
+    # reset
+    if button_a.is_pressed():
+        count = 0
+        is_complete = False
+        is_down = False
     if is_complete:
         display.show(Image.HAPPY)
     else:
@@ -14,9 +23,9 @@ while True:
         if (not is_down) and (light_level < 40):
             count = count + 1
             display.show(count)
-            if count >= 9:
+            if count >= total:
                 is_complete = True
-            sleep(2000)
+            sleep(wait_time)
             is_down = True
         else:
             display.clear()
